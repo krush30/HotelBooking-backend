@@ -39,6 +39,8 @@ Create a `.env` file in the root directory and add the following environment var
 DATABASE_URL=postgres://postgres:123123@localhost:5432/hotel_booking
 JWT_SECRET=my_jwt_secret
 UPLOAD_PATH=public/uploads
+JWT_EXPIRES_IN=36000s
+
 ```
 
 > **Note:** Never expose your `.env` file to GitHub. Add `.env` to `.gitignore`.
