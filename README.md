@@ -21,7 +21,7 @@ This is the backend for the **Hotel Booking App**, built using **NestJS**. It ha
 ### **1. Clone the Repository**
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/hotel-booking-backend.git
+git clone https://github.com/krush30/HotelBooking-backend.git
 cd hotel-booking-backend
 ```
 
@@ -31,19 +31,23 @@ cd hotel-booking-backend
 npm install
 ```
 
-### **3. Create ****\*\*******`.env`****\*\*\*\***** File\*\*
+### **3. Create \*\***\*\***\*\***`.env`\***\*\*\*\*\*\*\*** File\*\*
 
 Create a `.env` file in the root directory and add the following environment variables:
 
 ```env
-DATABASE_URL=your_postgresql_database_url
-JWT_SECRET=your_jwt_secret
+DATABASE_URL=postgres://postgres:123123@localhost:5432/hotel_booking
+JWT_SECRET=my_jwt_secret
 UPLOAD_PATH=public/uploads
 ```
 
 > **Note:** Never expose your `.env` file to GitHub. Add `.env` to `.gitignore`.
 
 ### **4. Run Database Migrations**
+
+```sh
+npx drizzle-kit generate
+```
 
 ```sh
 npx drizzle-kit push
