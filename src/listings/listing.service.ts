@@ -19,4 +19,17 @@ export class ListingsService {
   createListing(data: any) {
     return db.insert(listings).values(data).returning();
   }
+
+  async deleteListing(id: number) {
+    const deleted = await db
+      .delete(listings)
+      .where(eq(listings.id, id))
+      .returning();
+
+    if (deleted.length === 0) {
+      throw new Error(`Listing with ID ${id} not found`);
+    }
+
+    return { message: 'Listing deleted successfully', deleted };
+  }
 }

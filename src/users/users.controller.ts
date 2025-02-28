@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
@@ -17,5 +17,10 @@ export class UsersController {
   getUserById(@Param('id') id: number) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return this.usersService.getUserById(Number(id));
+  }
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  deleteUser(@Param('id') id: number) {
+    return this.usersService.deleteUser(Number(id));
   }
 }

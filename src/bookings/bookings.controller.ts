@@ -20,6 +20,13 @@ export class BookingsController {
   async getBooking(@Param('id') id: number) {
     return this.bookingsService.getBooking(id);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('customer/:customerId')
+  async getBookingsForCustomer(@Param('customerId') customerId: number) {
+    return this.bookingsService.getBookingsForCustomer(customerId);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('vendor/:vendorId')
   async getBookingForVendor(@Param('vendorId') vendorId: number) {

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Delete,
+} from '@nestjs/common';
 import { ListingsService } from './listing.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
@@ -20,5 +28,10 @@ export class ListingsController {
   @Post()
   createListing(@Body() body) {
     return this.listingsService.createListing(body);
+  }
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  deleteListing(@Param('id') id: number) {
+    return this.listingsService.deleteListing(Number(id));
   }
 }

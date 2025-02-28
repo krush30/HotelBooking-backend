@@ -17,4 +17,16 @@ export class UsersService {
   getUserById(id: number) {
     return db.query.users.findFirst({ where: eq(users.id, id) });
   }
+  async deleteUser(id: number) {
+    const deletedUser = await db
+      .delete(users)
+      .where(eq(users.id, id))
+      .returning();
+
+    if (deletedUser.length === 0) {
+      throw new Error(`User with ID ${id} not found`);
+    }
+
+    return { message: 'User deleted successfully', deletedUser };
+  }
 }
